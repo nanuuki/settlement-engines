@@ -12,15 +12,14 @@ use tokio::runtime::Builder as RuntimeBuilder;
 
 mod test_helpers;
 use test_helpers::{
-    accounts_to_ids, create_account_on_node, get_all_accounts, get_balance, random_secret,
-    redis_helpers::*, send_money_to_username, set_node_settlement_engines, start_ganache,
-    start_xrp_engine,
+    random_secret, accounts_to_ids, create_account_on_node, get_all_accounts, get_balance,
+    send_money_to_username, set_node_settlement_engines, start_ganache, start_xrp_engine,
 };
 
-#[cfg(feature = "ethereum")]
-use test_helpers::start_eth_engine;
+#[cfg(feature = "redis")]
+use test_helpers::{start_eth_engine, redis_helpers::*};
 
-#[cfg(feature = "ethereum")]
+#[cfg(feature = "redis")]
 #[test]
 fn eth_xrp_interoperable() {
     // Nodes 1 and 2 are peers, Node 2 is the parent of Node 3

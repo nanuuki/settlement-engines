@@ -4,11 +4,11 @@ use interledger::{
     service::Account as AccountTrait,
     store_redis::{Account, AccountId},
 };
-#[cfg(feature = "ethereum")]
-use interledger_settlement_engines::engines::ethereum_ledger::{
-    run_ethereum_engine, EthereumLedgerOpt,
-};
 
+#[cfg(feature = "redis")]
+use ethereum_engine::engine::{run_ethereum_engine, EthereumLedgerOpt};
+
+#[cfg(feature = "redis")]
 pub mod redis_helpers;
 
 use hex;
@@ -25,6 +25,14 @@ use std::process::Command;
 use std::str;
 use std::thread::sleep;
 use std::time::Duration;
+use ring::rand::{SecureRandom, SystemRandom};
+
+#[allow(unused)]
+pub fn random_secret() -> [u8; 32] {
+    let mut bytes: [u8; 32] = [0; 32];
+    SystemRandom::new().fill(&mut bytes).unwrap();
+    bytes
+}
 
 #[allow(unused)]
 pub fn random_secret() -> String {
@@ -77,7 +85,7 @@ pub fn start_xrp_engine(
         .expect("couldnt start xrp engine")
 }
 
-#[cfg(feature = "ethereum")]
+#[cfg(feature = "redis")]
 #[allow(unused)]
 pub fn start_eth_engine(
     db: ConnectionInfo,

@@ -13,12 +13,13 @@ use web3::{
     types::{Address, H256, U256},
 };
 
-use crate::engines::ethereum_ledger::{
-    EthereumAccount, EthereumAddresses as Addresses, EthereumLedgerSettlementEngine,
-    EthereumLedgerSettlementEngineBuilder, EthereumLedgerTxSigner, EthereumStore,
+use crate::engine::{EthereumLedgerSettlementEngine, EthereumLedgerSettlementEngineBuilder};
+use crate::utils::types::{Addresses, EthereumAccount, EthereumLedgerTxSigner, EthereumStore};
+use settlement_core::{
+    idempotency::{IdempotentData, IdempotentStore},
+    scale_with_precision_loss,
+    types::{Convert, ConvertDetails, LeftoversStore},
 };
-use interledger_http::idempotency::{IdempotentData, IdempotentStore};
-use interledger_settlement::{scale_with_precision_loss, Convert, ConvertDetails, LeftoversStore};
 
 #[derive(Debug, Clone)]
 pub struct TestAccount {

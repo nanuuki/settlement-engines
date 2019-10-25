@@ -16,12 +16,14 @@ use web3::{
     types::{Address, H256, U256},
 };
 
-use interledger_http::idempotency::{IdempotentData, IdempotentStore};
-use interledger_settlement::{scale_with_precision_loss, Convert, ConvertDetails, LeftoversStore};
-use interledger_settlement_engines::engines::ethereum_ledger::{
-    EthereumAccount, EthereumAddresses as Addresses, EthereumLedgerSettlementEngine,
-    EthereumLedgerSettlementEngineBuilder, EthereumLedgerTxSigner, EthereumStore,
+use ethereum_engine::engine::{EthereumLedgerSettlementEngine, EthereumLedgerSettlementEngineBuilder};
+use ethereum_engine::utils::types::{Addresses, EthereumAccount, EthereumLedgerTxSigner, EthereumStore};
+use settlement_core::{
+    idempotency::{IdempotentData, IdempotentStore},
+    scale_with_precision_loss,
+    types::{Convert, ConvertDetails, LeftoversStore},
 };
+
 use num_bigint::BigUint;
 
 #[derive(Debug, Clone)]

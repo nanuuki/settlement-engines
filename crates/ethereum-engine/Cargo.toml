@@ -13,7 +13,7 @@ log = "0.4.6"
 tokio = "0.1.21"
 hyper = "0.12.31"
 futures = "0.1.25"
-interledger-service = "0.3.0"
+interledger-service = { git = "https://github.com/interledger-rs/interledger-rs", rev = "97e6a5a683f341c5f8eb3b0d612ccb7b9a2a7bef" }
 interledger-http = "0.3.0"
 interledger-service-util = "0.3.0"
 interledger-ildcp = "0.3.0"

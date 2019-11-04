@@ -6,6 +6,7 @@ use log::{debug, error, trace};
 use reqwest::r#async::Client;
 use serde_json::json;
 use settlement_core::types::{Quantity, SettlementAccount};
+use interledger_service::Account;
 use uuid::Uuid;
 
 #[derive(Clone)]
@@ -20,7 +21,7 @@ impl SettlementClient {
         }
     }
 
-    pub fn send_settlement<A: SettlementAccount>(
+    pub fn send_settlement<A: SettlementAccount + Account>(
         &self,
         account: A,
         amount: u64,

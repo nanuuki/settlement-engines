@@ -76,14 +76,14 @@ pub struct SettlementEngineDetails {
     pub url: Url,
 }
 
-pub trait SettlementAccount: Account {
+pub trait SettlementAccount {
     fn settlement_engine_details(&self) -> Option<SettlementEngineDetails> {
         None
     }
 }
 
 pub trait SettlementStore {
-    type Account: SettlementAccount;
+    type Account: Account;
 
     fn update_balance_for_incoming_settlement(
         &self,

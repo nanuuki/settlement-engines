@@ -46,7 +46,7 @@ where
         + Sync
         + 'static,
     O: OutgoingService<A> + Clone + Send + Sync + 'static,
-    A: SettlementAccount + Send + Sync + 'static,
+    A: SettlementAccount + Account + Send + Sync + 'static,
 {
     let with_store = warp::any().map(move || store.clone()).boxed();
     let idempotency = warp::header::optional::<String>("idempotency-key");
@@ -154,7 +154,7 @@ where
         + Send
         + Sync
         + 'static,
-    A: SettlementAccount + Send + Sync + 'static,
+    A: SettlementAccount + Account + Send + Sync + 'static,
 {
     let store_clone = store.clone();
     let engine_amount = body.amount;
@@ -272,7 +272,7 @@ where
         + Sync
         + 'static,
     O: OutgoingService<A> + Clone + Send + Sync + 'static,
-    A: SettlementAccount + Send + Sync + 'static,
+    A: SettlementAccount + Account + Send + Sync + 'static,
 {
     Box::new(result(A::AccountId::from_str(&account_id)
             .map_err(move |_| {

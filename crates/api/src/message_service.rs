@@ -3,7 +3,7 @@ use futures::{
     Future, Stream,
 };
 use interledger_packet::{ErrorCode, FulfillBuilder, RejectBuilder};
-use interledger_service::{BoxedIlpFuture, IncomingRequest, IncomingService};
+use interledger_service::{BoxedIlpFuture, IncomingRequest, IncomingService, Account};
 use log::error;
 use reqwest::r#async::Client;
 use settlement_core::types::{SettlementAccount, SE_ILP_ADDRESS};
@@ -22,7 +22,7 @@ pub struct SettlementMessageService<I, A> {
 impl<I, A> SettlementMessageService<I, A>
 where
     I: IncomingService<A>,
-    A: SettlementAccount,
+    A: SettlementAccount + Account,
 {
     pub fn new(next: I) -> Self {
         SettlementMessageService {
@@ -36,7 +36,7 @@ where
 impl<I, A> IncomingService<A> for SettlementMessageService<I, A>
 where
     I: IncomingService<A> + Send,
-    A: SettlementAccount,
+    A: SettlementAccount + Account,
 {
     type Future = BoxedIlpFuture;
 

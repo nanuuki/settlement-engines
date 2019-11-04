@@ -8,10 +8,9 @@ edition = "2018"
 repository = "https://github.com/interledger-rs/interledger-settlement"
 
 [dependencies]
-# todo replace with latest published versions
-interledger-service = { git = "https://github.com/interledger-rs/interledger-rs", branch = "master" }
-interledger-http = { git = "https://github.com/interledger-rs/interledger-rs", branch = "master" }
-interledger-packet = { git = "https://github.com/interledger-rs/interledger-rs", branch = "master" }
+interledger-service = "0.3.0"
+interledger-http = "0.3.0"
+interledger-packet = "0.3.0"
 log = "0.4.8"
 bytes = "0.4.12"
 serde = "1.0.101"

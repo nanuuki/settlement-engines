@@ -11,9 +11,11 @@ use ethereum_engine::engine::{run_ethereum_engine, EthereumLedgerOpt};
 #[cfg(feature = "redis")]
 pub mod redis_helpers;
 
+#[cfg(feature = "redis")]
+use redis_crate::ConnectionInfo;
+
 use hex;
 use interledger::stream::StreamDelivery;
-use redis::ConnectionInfo;
 use ring::rand::{SecureRandom, SystemRandom};
 use secrecy::Secret;
 use serde::{Deserialize, Serialize};
@@ -25,14 +27,6 @@ use std::process::Command;
 use std::str;
 use std::thread::sleep;
 use std::time::Duration;
-use ring::rand::{SecureRandom, SystemRandom};
-
-#[allow(unused)]
-pub fn random_secret() -> [u8; 32] {
-    let mut bytes: [u8; 32] = [0; 32];
-    SystemRandom::new().fill(&mut bytes).unwrap();
-    bytes
-}
 
 #[allow(unused)]
 pub fn random_secret() -> String {

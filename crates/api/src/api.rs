@@ -38,7 +38,7 @@ pub fn create_settlements_filter<S, O, A>(
 ) -> warp::filters::BoxedFilter<(impl warp::Reply,)>
 where
     S: LeftoversStore<AccountId = <A as Account>::AccountId, AssetType = BigUint>
-        + SettlementStore<Account = A>
+        + SettlementStore<AccountId = <A as Account>::AccountId>
         + IdempotentStore
         + AccountStore<Account = A>
         + Clone
@@ -147,7 +147,7 @@ fn do_receive_settlement<S, A>(
 ) -> Box<dyn Future<Item = (StatusCode, Bytes), Error = ApiError> + Send>
 where
     S: LeftoversStore<AccountId = <A as Account>::AccountId, AssetType = BigUint>
-        + SettlementStore<Account = A>
+        + SettlementStore<AccountId = <A as Account>::AccountId>
         + IdempotentStore
         + AccountStore<Account = A>
         + Clone
@@ -264,7 +264,7 @@ fn do_send_outgoing_message<S, O, A>(
 ) -> Box<dyn Future<Item = (StatusCode, Bytes), Error = ApiError> + Send>
 where
     S: LeftoversStore<AccountId = <A as Account>::AccountId, AssetType = BigUint>
-        + SettlementStore<Account = A>
+        + SettlementStore<AccountId = <A as Account>::AccountId>
         + IdempotentStore
         + AccountStore<Account = A>
         + Clone

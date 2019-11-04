@@ -3,7 +3,6 @@ use futures::Future;
 use http::StatusCode;
 use interledger_http::error::{ApiError, ApiErrorType, ProblemType};
 use interledger_packet::Address;
-use interledger_service::Account;
 use lazy_static::lazy_static;
 use num_bigint::BigUint;
 use serde::{Deserialize, Serialize};
@@ -83,18 +82,18 @@ pub trait SettlementAccount {
 }
 
 pub trait SettlementStore {
-    type Account: Account;
+    type AccountId;
 
     fn update_balance_for_incoming_settlement(
         &self,
-        account_id: <Self::Account as Account>::AccountId,
+        account_id: Self::AccountId,
         amount: u64,
         idempotency_key: Option<String>,
     ) -> Box<dyn Future<Item = (), Error = ()> + Send>;
 
     fn refund_settlement(
         &self,
-        account_id: <Self::Account as Account>::AccountId,
+        account_id: Self::AccountId,
         settle_amount: u64,
     ) -> Box<dyn Future<Item = (), Error = ()> + Send>;
 }

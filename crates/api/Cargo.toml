@@ -8,9 +8,9 @@ edition = "2018"
 repository = "https://github.com/interledger-rs/interledger-settlement"
 
 [dependencies]
-interledger-service = { git = "https://github.com/interledger-rs/interledger-rs", rev = "97e6a5a683f341c5f8eb3b0d612ccb7b9a2a7bef" }
+interledger-service = "0.3.0"
 interledger-http = "0.3.0"
-interledger-packet = { git = "https://github.com/interledger-rs/interledger-rs", rev = "97e6a5a683f341c5f8eb3b0d612ccb7b9a2a7bef" }
+interledger-packet = "0.3.0"
 bytes = { version = "0.4.12", default-features = false }
 futures = { version = "0.1.29", default-features = false }
 hyper = { version = "0.12.35", default-features = false }

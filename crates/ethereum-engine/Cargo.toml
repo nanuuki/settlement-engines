@@ -13,11 +13,11 @@ log = "0.4.6"
 tokio = "0.1.21"
 hyper = "0.12.31"
 futures = "0.1.25"
-interledger-service = { git = "https://github.com/interledger-rs/interledger-rs", branch = "master" }
+interledger-service = "0.3.0"
+interledger-http = "0.3.0"
+interledger-service-util = "0.3.0"
+interledger-ildcp = "0.3.0"
 settlement-core = { path = "../settlement-core" }
-interledger-http = { git = "https://github.com/interledger-rs/interledger-rs", branch = "master" }
-interledger-service-util = { git = "https://github.com/interledger-rs/interledger-rs", branch = "master" }
-interledger-ildcp = { git = "https://github.com/interledger-rs/interledger-rs", branch = "master" }
 ethabi = "8.0.1"
 serde = { version = "1.0.101", default-features = false }
 serde_json = { version = "1.0.41", default-features = false }
